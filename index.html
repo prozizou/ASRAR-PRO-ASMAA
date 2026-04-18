@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <script>
+        window.onerror = function(msg, url, line) {
+            console.warn("🛑 ERREUR : " + msg + "\nLigne : " + line);
+        };
+        window.addEventListener('unhandledrejection', function(event) {
+            console.warn("🌐 ERREUR RÉSEAU/MODULE : ", event.reason);
+        });
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Asma ul-Husna | Les Noms d'Allah</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0d1117">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Asma ul-Husna">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌙</text></svg>">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css?v=10">
+</head>
+<body>
+
+    <div class="app-wrapper">
+        <header class="app-header">
+            <div class="header-inner">
+                <div class="header-brand">
+                    <div class="brand-icon"><i class="fas fa-moon" style="color: var(--gold)"></i></div>
+                    <div>
+                        <h1 class="brand-title">Asma ul-Husna</h1>
+                        <div class="brand-subtitle">Sagesse, lumière et bénédiction</div>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button id="themeToggle" class="icon-btn" aria-label="Changer le thème"><i class="fas fa-sun"></i></button>
+                    <button id="viewToggle" class="icon-btn" aria-label="Changer la vue"><i class="fas fa-th-large"></i></button>
+                    <button id="showFavoritesBtn" class="icon-btn" aria-label="Voir les favoris"><i class="far fa-star"></i></button>
+                    
+                    <button id="logoutBtn" class="icon-btn" aria-label="Se déconnecter" title="Déconnexion">
+                        <i class="fas fa-sign-out-alt" style="color: #ff7070;"></i>
+                    </button>
+                    
+                    <button id="installAppBtn" class="icon-btn" aria-label="Installer l'application" style="display: none; color: var(--green-accent);">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="header-stats">
+                <div class="stat-pill">
+                    <i class="fas fa-dharmachakra"></i> <span id="countDisplay">0</span> noms révélés
+                </div>
+            </div>
+        </header>
+
+        <div class="search-wrapper">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Rechercher par nom, translitération ou sens..." autocomplete="off">
+                <button id="clearSearch" class="clear-btn" style="display: none;"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="suggestionsBox" class="suggestions-dropdown"></div>
+        </div>
+
+        <main id="cardsContainer" class="cards-grid">
+        </main>
+        
+        <footer class="app-footer">
+            <div class="footer-inner">
+                <span>Données en temps réel</span>
+                <span class="footer-dot"></span>
+                <span>Élégance spirituelle</span>
+            </div>
+        </footer>
+    </div>
+
+    <div id="nameModal" class="modal" hidden>
+        <div class="modal-backdrop"></div>
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <button class="modal-close" aria-label="Fermer"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div id="modalNumber"></div>
+                <div id="modalArabic" class="modal-arabic"></div>
+                <div id="modalTranslit" class="modal-translit"></div>
+                
+                <div class="modal-section">
+                    <div class="modal-section-label"><i class="fas fa-gem"></i> Sens divin</div>
+                    <div id="modalMeaning" class="modal-text"></div>
+                </div>
+                
+                <div class="modal-section" id="modalBenefitSection">
+                    <div class="modal-section-label"><i class="fas fa-leaf"></i> Vertus spirituelles</div>
+                    <div id="modalBenefit" class="modal-text"></div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button id="modalPlayAudio" class="btn btn-ghost"><i class="fas fa-volume-up"></i> Écouter</button>
+                <button id="modalToggleFavorite" class="btn btn-primary"><i class="far fa-star"></i> Ajouter aux favoris</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="scroll-fab">
+        <button id="scrollTopBtn" class="fab-btn" aria-label="Haut de page"><i class="fas fa-arrow-up"></i></button>
+        <button id="scrollBottomBtn" class="fab-btn" aria-label="Bas de page"><i class="fas fa-arrow-down"></i></button>
+    </div>
+
+    <script type="module" src="app.js?v=10"></script>
+    
+</body>
+</html>

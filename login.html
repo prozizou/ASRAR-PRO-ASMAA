@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion | Asma ul-Husna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=11">
+    
+    <style>
+        body { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; min-height: 100vh; overflow-y: auto; padding: 2rem 0; }
+        .login-container { display: flex; flex-direction: column; gap: 1.5rem; max-width: 400px; width: 90%; margin: 2vh auto 0; }
+        .login-card { text-align: center; width: 100%; padding: 2rem; }
+        .login-card i.fa-moon { font-size: 3rem; color: var(--gold); margin-bottom: 1rem; }
+        .btn-google { background: #ffffff; color: #333; font-weight: 600; font-size: 1rem; padding: 0.8rem 1.5rem; border-radius: var(--radius-pill); border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; margin-top: 2rem; box-shadow: var(--shadow-md); transition: transform 0.2s; width: 100%; justify-content: center;}
+        .btn-google:hover { transform: scale(1.05); }
+        .btn-google img { width: 24px; }
+
+        /* ── AFFICHAGE DES AVIS 5 ÉTOILES (Page Login) ─────────────────────── */
+.testimonials-showcase {
+    width: 90%;
+    max-width: 900px;
+    margin: 2rem auto 0;
+    text-align: center;
+    animation: fadeUp 0.5s var(--ease) both;
+    animation-delay: 0.2s;
+}
+
+.showcase-title {
+    color: var(--gold);
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.showcase-title::before, .showcase-title::after {
+    content: '';
+    height: 1px;
+    width: 40px;
+    background: var(--gold-border);
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    padding-bottom: 2rem;
+}
+
+.review-card {
+    padding: 1.5rem;
+    text-align: left;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    background: var(--surface-1);
+    backdrop-filter: blur(16px) saturate(1.3);
+    -webkit-backdrop-filter: blur(16px) saturate(1.3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.25s var(--ease), border-color 0.25s;
+}
+
+.review-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold-border);
+}
+
+.review-stars {
+    color: var(--gold);
+    font-size: 0.9rem;
+}
+
+.review-text {
+    font-size: 0.88rem;
+    color: var(--text-1);
+    font-style: italic;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.review-author {
+    font-size: 0.82rem;
+    color: var(--text-2);
+    font-weight: 600;
+    border-top: 1px dashed var(--border-strong);
+    padding-top: 0.75rem;
+}
+
+.review-quote-icon {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 3rem;
+    color: var(--gold);
+    opacity: 0.08;
+}
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="glass-card login-card">
+            <i class="fas fa-moon"></i>
+            <h2>Asma ul-Husna</h2>
+            <p style="color: var(--text-2); margin-top: 5px;">Accès restreint aux pratiquants</p>
+            
+            <button id="loginBtn" class="btn-google">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                Choisir un compte Google
+            </button>
+
+            <div class="assistance-section">
+                <p class="help-text">Choisissez votre forfait d'accès à ASRAR PRO :</p>
+                
+                <div class="subscription-plans">
+                    <label class="plan-card">
+                        <input type="radio" name="sub_plan" value="Mensuel" data-price="10 000" checked>
+                        <div class="plan-content">
+                            <span class="plan-name">Mensuel</span>
+                            <span class="plan-price">10 000 FCFA</span>
+                        </div>
+                    </label>
+                    
+                    <label class="plan-card">
+                        <input type="radio" name="sub_plan" value="Trimestriel" data-price="20 000">
+                        <div class="plan-content">
+                            <span class="plan-name">Trimestriel</span>
+                            <span class="plan-price">20 000 FCFA</span>
+                        </div>
+                    </label>
+
+                    <label class="plan-card">
+                        <input type="radio" name="sub_plan" value="Annuel" data-price="50 000">
+                        <div class="plan-content">
+                            <span class="plan-name">Annuel</span>
+                            <span class="plan-price">50 000 FCFA</span>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="wa-btn-container" id="waBtnContainer">
+    <span class="tooltip-text" id="waTooltip">
+        <i class="fas fa-exclamation-circle" style="color: #ff7070;"></i> 
+        Veuillez d'abord cliquer sur "Choisir un compte Google" en haut pour récupérer votre email.
+    </span>
+    <a id="wa-btn" href="#" class="wa-btn disabled">
+        <i class="fab fa-whatsapp"></i> Payer via WhatsApp
+    </a>
+</div>
+<p id="wa-email-hint" class="email-hint" style="display: none;" data-email="">
+    Votre email sera inclus dans le message pour l'activation.
+</p>
+            </div>
+        </div>
+
+        <div class="testimonial-section glass-card" style="padding: 1.5rem;">
+            <p class="testimonial-title">Laissez votre avis sur l'application</p>
+            
+            <div class="star-rating" id="star-rating">
+                <i class="far fa-star" data-val="1"></i>
+                <i class="far fa-star" data-val="2"></i>
+                <i class="far fa-star" data-val="3"></i>
+                <i class="far fa-star" data-val="4"></i>
+                <i class="far fa-star" data-val="5"></i>
+            </div>
+            
+            <input type="email" id="testi-email" class="testi-input" placeholder="Votre email (obligatoire)">
+            <input type="text" id="testi-name" class="testi-input" placeholder="Votre nom (optionnel)">
+            <textarea id="testi-text" class="testi-input" placeholder="Partagez votre expérience avec ASRAR PRO..." rows="3"></textarea>
+            
+            <button id="submit-testi-btn" class="btn btn-primary testi-submit">
+                <i class="fas fa-paper-plane"></i> Envoyer
+            </button>
+        </div>
+    </div>
+
+    <div class="testimonials-showcase" id="testimonialsShowcase" style="display: none;">
+        <h3 class="showcase-title">Avis de nos pratiquants</h3>
+        <div class="reviews-grid" id="reviewsGrid">
+            </div>
+    </div>
+
+    <script type="module" src="login.js"></script>
+</body>
+</html>
