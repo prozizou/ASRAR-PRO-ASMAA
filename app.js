@@ -120,3 +120,43 @@ if ('serviceWorker' in navigator) {
         });
     });
 }
+// ── 6. INSTALLATION PWA (Bouton "Ajouter à l'écran d'accueil") ───────────────
+let deferredPrompt;
+const installBtn = document.getElementById('installAppBtn');
+
+// Écoute l'événement système qui dit "L'app est prête à être installée"
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Empêche la mini-bannière automatique de Google
+    e.preventDefault();
+    // On sauvegarde l'événement pour le déclencher au clic
+    deferredPrompt = e;
+    // On affiche notre joli bouton d'installation
+    if (installBtn) {
+        installBtn.style.display = 'flex';
+    }
+});
+
+if (installBtn) {
+    installBtn.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        
+        // Affiche la vraie boîte de dialogue d'installation du téléphone/PC
+        deferredPrompt.prompt();
+        
+        // Attend la réponse de l'utilisateur (Installé ou Annulé)
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log(`Résultat de l'installation : ${outcome}`);
+        
+        // On réinitialise la variable
+        deferredPrompt = null;
+        // On cache le bouton
+        installBtn.style.display = 'none';
+    });
+}
+
+// Optionnel : Message quand l'installation est réussie
+window.addEventListener('appinstalled', () => {
+    deferredPrompt = null;
+    if (installBtn) installBtn.style.display = 'none';
+    showToast("✅ ASRAR PRO est installée sur votre appareil !");
+});
